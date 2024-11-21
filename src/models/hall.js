@@ -1,24 +1,21 @@
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../database/sequelize');
 
-class Genre extends Model {}
+class Hall extends Model {}
 
-Genre.init({
+Hall.init({
   id: {
     type: DataTypes.SMALLINT,
     primaryKey: true,
-    allowNull: false,
-    autoIncrement: true
+    autoIncrement: true,
   },
   name: {
     type: DataTypes.STRING(50),
     allowNull: false,
-  }
+  },
 }, {
   sequelize,
-  tableName: 'genres'
+  tableName: 'halls',
 });
 
-
-
-module.exports = Genre;
+module.exports = Hall;

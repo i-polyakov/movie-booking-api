@@ -1,4 +1,5 @@
 const sequelize = require("./sequelize");
+require("../models"); // создание ассоциаций моделей
 // const constants = require("../constants");
 
 // const userService = require("../services/user");

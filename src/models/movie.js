@@ -8,6 +8,7 @@ Movie.init({
     type: DataTypes.INTEGER,
     primaryKey: true,
     allowNull: false,
+    autoIncrement: true
   },
   title: {
     type: DataTypes.STRING(50),
@@ -36,8 +37,8 @@ Movie.init({
   }
 }, {
   sequelize,
-  modelName: 'Movie',
   tableName: 'movies'
 });
+
 
 module.exports = Movie;
