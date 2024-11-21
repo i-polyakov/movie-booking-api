@@ -1,18 +1,11 @@
 const express = require('express');
-const Movie = require('../models/movie');
+const MovieController = require('../controllers/movie');
 const router = express.Router();
 
 // Получить все фильмы
-router.get('/', async (req, res) => {
-  const movies = await Movie.findAll();
-  res.json(movies);
-});
-
+router.get('/', MovieController.getAll);
+router.get('/:id', MovieController.getOne);
 // Создать фильм
-router.post('/', async (req, res) => {
-  const { id, title, released, runtime, image_url, plot, relevant } = req.body;
-  const movie = await Movie.create({ id, title, released, runtime, image_url, plot, relevant });
-  res.status(201).json(movie);
-});
+router.post('/', MovieController.create);
 
 module.exports = router;

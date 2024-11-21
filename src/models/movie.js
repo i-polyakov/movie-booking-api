@@ -15,7 +15,7 @@ Movie.init({
     allowNull: false,
   },
   released: {
-    type: DataTypes.DATE,
+    type: "TIMESTAMP",
     allowNull: true,
   },
   runtime: {
