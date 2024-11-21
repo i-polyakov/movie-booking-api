@@ -9,9 +9,13 @@ class MovieRepository {
   async findById(id) {
     return await Movie.findByPk(id);
   }
-
+  
   async create(movieData) {
     return await Movie.create(movieData);
+  }
+  
+  async update(id, relevant) {
+    return await Movie.update({ relevant }, { where: { id } });
   }
 }
 

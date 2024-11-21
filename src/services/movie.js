@@ -8,10 +8,11 @@ class MovieService {
         return Movie.findById(id);
     }
     async create(movie){
-        console.log(movie);
-        // const date = moment(dateString).utc().format('YYYY-MM-DD HH:mm:ss');
-        // const movie = [...movie, released: ]
         return Movie.create(movie);
+    }
+    async update(id, relevant){
+    
+        return Movie.update( id, relevant);
     }
 }
 

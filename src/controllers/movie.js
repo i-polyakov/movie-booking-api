@@ -18,13 +18,23 @@ class MovieController {
         }
     }
     async create(req, res, next){
-        //try {
+        try {
             const { title, released, runtime, image_url, plot, relevant } = req.body;
             const createdMovie = await movieService.create({ title, released, runtime, image_url, plot, relevant });
             res.status(201).json(createdMovie);
-        // }catch(err){
-        //     next(err);
-        // }
+        }catch(err){
+            next(err);
+        }
+    }
+
+    async setRelevance(req, res, next){
+        try {
+            const { relevant } = req.body; 
+            const updatedMovie = await movieService.update(req.params.id, relevant);
+            res.status(200).json(updatedMovie);
+        }catch(err){
+            next(err);
+        }
     }
 }
 
