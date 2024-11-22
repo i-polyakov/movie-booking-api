@@ -18,7 +18,7 @@ Showtime.init({
     allowNull: false,
   },
   show_date: {
-    type: DataTypes.DATE,
+    type: "TIMESTAMP",
     allowNull: false,
   },
 }, {
