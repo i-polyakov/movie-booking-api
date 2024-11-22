@@ -26,14 +26,13 @@ Review.init({
     allowNull: false,
   },
   create_at: {
-    type: DataTypes.DATE,
+    type: "TIMESTAMP",
     allowNull: false,
-    defaultValue: DataTypes.NOW,
+    defaultValue: sequelize.fn('GETDATE'),
   }
 }, {
   sequelize,
-  tableName: 'reviews',
-  timestamps: false,
+  tableName: 'reviews'
 });
 
 module.exports = Review;

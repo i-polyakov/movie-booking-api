@@ -11,7 +11,7 @@ const genresRouter = require('./routes/genres');
 const moviesRouter = require('./routes/movies');
 const hallsRouter = require('./routes/halls');
 const seatsRouter = require('./routes/seats');
-
+const reviewsRouter = require('./routes/reviews');
 // app.use(loader);
 app.use(bodyParser.json());
 
@@ -19,6 +19,7 @@ app.use('/api/genres', genresRouter);
 app.use('/api/movies', moviesRouter);
 app.use('/api/halls', hallsRouter);
 app.use('/api/seats', seatsRouter);
+app.use('/api/reviews', reviewsRouter);
 
 const PORT = process.env.PORT || 3000;
 
