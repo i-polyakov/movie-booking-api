@@ -16,7 +16,6 @@ class ShowtimeController {
     }
     async getOne(req, res, next) {
         try {
-            console.log("2222", req.params.id);
             const showtime = await showtimeService.getOne(req.params.id);
             res.json(showtime);
         } catch (err) {
