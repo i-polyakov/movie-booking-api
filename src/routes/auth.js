@@ -2,8 +2,7 @@ const express = require('express');
 const AuthController = require('../controllers/auth');
 const router = express.Router();
 
-// router.get('/', ShowtimeController.getByMovieId);
-// router.get('/:id', ShowtimeController.getOne);
-router.post('/', AuthController.registration);
 
+router.post('/registration', AuthController.registration);
+router.post('/login', AuthController.login);
 module.exports = router;

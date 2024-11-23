@@ -1,18 +1,15 @@
 const authService = require("../services/auth");
 
 class AuthController {
-    login(req, res, next) {
+    async login(req, res, next) {
         try {
-            passport.authenticate("local", (err, user, info) => {
-                if (user) {
-                    req.session.user = user;
-                    req.session.role = user.role;
-
-                    return res.json(new Response("Authorization successful", 200));
-                }
-                return next(err);
-            })(req, res, next);
+            const {login, password} = req.body;
+            const userData = await authService.login(login, password);
+            res.json(userData);
+            
         } catch (err) {
+            console.log(err);
+            
             next(err);
         }
     }
