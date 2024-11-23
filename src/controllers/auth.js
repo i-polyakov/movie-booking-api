@@ -22,11 +22,11 @@ class AuthController {
         res.json(new Response("You unauthorized", 200));
     }
 
-    async signUp(req, res, next) {
-        const userData = req.body;
+    async registration(req, res, next) {
+        const {login, password} = req.body;
         try {
-            await authService.signUp(userData);
-            res.json(new Response("Registration successful", 200));
+            const userData = await authService.registration(login, password);
+            res.json(userData);
         } catch (err) {
             console.log(err);
             return next(err);

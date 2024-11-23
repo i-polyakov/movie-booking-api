@@ -7,11 +7,11 @@ class UserRepository {
   }
 
   async findByLogin(login) {
-    return await User.findOne({ where: { login } });
+    return await User.findOne({ where: { login: login } });
   }
   
   async create(userData) {
-    return await Showtime.create(userData);
+    return await User.create(userData);
   }
   
 }

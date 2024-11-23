@@ -1,6 +1,7 @@
 const express = require("express");
 // const loader = require("./loader");
 const bodyParser = require('body-parser');
+require('dotenv').config();
 const DataBase = require("./database");
 // const port = require("./config").app.port;
 // const mongoPort = require("./config").app.mongoPort;
@@ -14,6 +15,7 @@ const seatsRouter = require('./routes/seats');
 const reviewsRouter = require('./routes/reviews');
 const showtimesRouter = require('./routes/showtimes');
 const bookingsRouter = require('./routes/bookings');
+const authRouter = require('./routes/auth');
 
 // app.use(loader);
 app.use(bodyParser.json());
@@ -25,9 +27,10 @@ app.use('/api/seats', seatsRouter);
 app.use('/api/reviews', reviewsRouter);
 app.use('/api/showtimes', showtimesRouter);
 app.use('/api/bookings', bookingsRouter);
+app.use('/api/users', authRouter);
+
 
 const PORT = process.env.PORT || 3000;
-
 async function start(){
 
     await DataBase.connect();
