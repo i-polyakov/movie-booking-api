@@ -10,7 +10,6 @@ class ShowtimeController {
             const showtimes = await showtimeService.getByMovieId(movieId);
             res.json(showtimes);
         } catch (err) {
-            console.log(err);
             next(err);
         }
     }
@@ -19,7 +18,6 @@ class ShowtimeController {
             const showtime = await showtimeService.getOne(req.params.id);
             res.json(showtime);
         } catch (err) {
-            console.log(err);
             next(err);
         }
     }
@@ -29,7 +27,6 @@ class ShowtimeController {
             const created = await showtimeService.create({ hall_id: hallId, movie_id: movieId, show_date });
             res.status(201).json(created);
         } catch (err) {
-            console.log(err);
             next(err);
         }
     }

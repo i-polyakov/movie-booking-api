@@ -5,11 +5,8 @@ class AuthController {
         try {
             const {login, password} = req.body;
             const userData = await authService.login(login, password);
-            res.json(userData);
-            
+            res.json(userData);    
         } catch (err) {
-            console.log(err);
-            
             next(err);
         }
     }
@@ -25,7 +22,6 @@ class AuthController {
             const userData = await authService.registration(login, password);
             res.json(userData);
         } catch (err) {
-            console.log(err);
             return next(err);
         }
     }

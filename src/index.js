@@ -3,6 +3,7 @@ const express = require("express");
 const bodyParser = require('body-parser');
 require('dotenv').config();
 const DataBase = require("./database");
+const errorMiddleware = require('./middleware/errorMiddleware')
 // const port = require("./config").app.port;
 // const mongoPort = require("./config").app.mongoPort;
 const app = express();
@@ -28,7 +29,7 @@ app.use('/api/reviews', reviewsRouter);
 app.use('/api/showtimes', showtimesRouter);
 app.use('/api/bookings', bookingsRouter);
 app.use('/api/users', authRouter);
-
+app.use(errorMiddleware)
 
 const PORT = process.env.PORT || 3000;
 async function start(){
