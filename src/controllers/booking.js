@@ -10,7 +10,6 @@ class BookingController {
             const bookings = await bookingService.getByShowtimeId(showtimeId);
             res.json(bookings);
         } catch (err) {
-            console.log(err);
             next(err);
         }
     }
@@ -20,13 +19,12 @@ class BookingController {
             const created = await bookingService.create({ user_id: userId, showtime_id: showtimeId, seat_id: seatId });
             res.status(201).json(created);
         } catch (err) {
-            console.log(err);
             next(err);
         }
     }
     async delete(req, res, next) {
         try {
-            const deleted = await bookingService.delete(req.params.id);
+            const deleted = await bookingService.delete(req.params.id, req.user.id);
             res.status(200).json(deleted);
         } catch (err) {
             console.log(err);
