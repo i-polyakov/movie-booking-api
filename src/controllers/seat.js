@@ -1,17 +1,9 @@
 const seatService = require("../services/seat");
 
 class SeatController {
-    async getAll(req, res, next){
+    async getByHallIdOrAll(req, res, next){
         try {
-            const seats = await seatService.getAll();
-            res.json(seats);
-        }catch(err){
-            next(err);
-        }
-    }
-    async getByHallId(req, res, next){
-        try {
-            const seats = await seatService.getByHallId(req.params.hallId);
+            const seats = await req.query.hallId ? seatService.getByHallId(req.query.hallId) : seatService.getAll()
             res.json(seats);
         }catch(err){
             next(err);

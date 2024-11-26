@@ -19,6 +19,11 @@ class ShowtimeRepository {
       }
     });
   }
+
+  async findBy(movie_id, hall_id, show_date) {
+    return await Showtime.findAll({
+      where:{ movie_id, hall_id, show_date}})
+  }
   
   async create(showtimeData) {
     return await Showtime.create(showtimeData);

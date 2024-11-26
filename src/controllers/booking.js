@@ -1,12 +1,13 @@
+const ApiError = require("../errors/APIError");
 const bookingService = require("../services/booking");
 
 class BookingController {
     async getByShowtimeId(req, res, next) {
         try {
             const showtimeId = req.query.showtimeId
-            if (!showtimeId) {
-                return res.status(400).json({ error: 'Параметр showtimeId обязателен' });
-            }
+            if (!showtimeId) 
+                throw ApiError.BadRequest("Параметр showtimeId обязателен")
+            
             const bookings = await bookingService.getByShowtimeId(showtimeId);
             res.json(bookings);
         } catch (err) {
@@ -24,10 +25,11 @@ class BookingController {
     }
     async delete(req, res, next) {
         try {
+            if (!req.params.id || !req.user.id) 
+                throw ApiError.BadRequest("Некорректный запрос")
             const deleted = await bookingService.delete(req.params.id, req.user.id);
             res.status(200).json(deleted);
         } catch (err) {
-            console.log(err);
             next(err);
         }
     }
