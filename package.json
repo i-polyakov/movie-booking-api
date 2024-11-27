@@ -1,6 +1,7 @@
 {
   "scripts": {
-    "app": "nodemon ./src/"
+    "app": "nodemon ./src/",
+    "test": "jest"
   },
   "dependencies": {
     "bcrypt": "^5.1.1",
@@ -17,6 +18,7 @@
     "swagger-ui-express": "^5.0.1"
   },
   "devDependencies": {
+    "jest": "^29.7.0",
     "nodemon": "^3.1.7"
   }
 }

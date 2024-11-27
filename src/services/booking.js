@@ -12,13 +12,16 @@ class BookingService {
         const showtime = await Showtime.findById(booking.showtime_id)
         if (showtime.show_date < Date.now())
             throw ApiError.BadRequest("Сеанс прошёл")
+
         const seats = await Seat.findByHallId(showtime.hall_id)
         const seatExist = seats.some(seat => seat.id == booking.seat_id)
         if (!seatExist)
             throw ApiError.BadRequest("Место не сущесвует")
+
         const check = await Booking.findBy(booking.showtime_id, booking.seat_id)
         if ( check.length > 0)
             throw ApiError.BadRequest("Место занято")
+
         return Booking.create(booking);
     }
     async delete(id, user_id){
