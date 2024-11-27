@@ -4,6 +4,7 @@ class AuthController {
     async login(req, res, next) {
         try {
             const {login, password} = req.body;
+            console.log(req.body);
             const userData = await authService.login(login, password);
             res.json(userData);    
         } catch (err) {

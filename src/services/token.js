@@ -5,7 +5,7 @@ class TokenService{
         console.log(process.env.JWT_SECRET, 333);
         if (!process.env.JWT_SECRET)
             throw new Error('secret error')
-        const accessToken = jwt.sign(payload, process.env.JWT_SECRET,{expiresIn: '30m'})
+        const accessToken = jwt.sign(payload, process.env.JWT_SECRET,{expiresIn: '300m'})
         return accessToken
     }
 

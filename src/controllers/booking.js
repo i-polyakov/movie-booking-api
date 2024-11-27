@@ -16,8 +16,8 @@ class BookingController {
     }
     async create(req, res, next) {
         try {
-            const { userId, showtimeId, seatId } = req.body;
-            const created = await bookingService.create({ user_id: userId, showtime_id: showtimeId, seat_id: seatId });
+            const { showtimeId, seatId } = req.body;
+            const created = await bookingService.create({ user_id: req.user.id, showtime_id: showtimeId, seat_id: seatId });
             res.status(201).json(created);
         } catch (err) {
             next(err);

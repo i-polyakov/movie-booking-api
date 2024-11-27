@@ -4,7 +4,6 @@ const BookingScheme = {
     create: Joi.object().keys(
       {
         showtimeId: Joi.number().required(),
-        userId: Joi.number().required(),
         seatId: Joi.number().required()
       }
     )
