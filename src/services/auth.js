@@ -26,7 +26,7 @@ class UserService {
         const token = TokenService.generateToken({ id: createdUser.id, login: createdUser.login, role: 'user' })
         return {
             token,
-            createdUser
+            user: createdUser
         }
     }
 }
