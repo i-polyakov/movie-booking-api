@@ -4,7 +4,7 @@ const ReviewScheme = {
   create: Joi.object(
     {
       movieId: Joi.number().required(),
-      rate: Joi.number().min(1).max(10),
+      rate: Joi.number().min(1).max(10).allow(null),
       text: Joi.string().trim().min(1).max(300).required()
     }
   )

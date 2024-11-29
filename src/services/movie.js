@@ -5,7 +5,17 @@ class MovieService {
         return Movie.findAll();
     }
     async getOne(id){
-        return Movie.findById(id);
+        return Movie.findById(id).then(movie => {
+            if (!movie) return movie;
+            // Вычисляем средний рейтинг и количество оценок
+            const ratings = movie.Reviews.filter(review => review.rate !== null).map(review => review.rate);
+            const averageRating = ratings.length ? (ratings.reduce((acc, rating) => acc + rating, 0) / ratings.length).toFixed(1) : null;
+            const reviewCount = ratings.length;
+          
+            if (averageRating !== null) 
+                return {...movie.toJSON(), averageRating, reviewCount}
+            return movie
+        });
     }
     async create(movie){
         return Movie.create(movie);
