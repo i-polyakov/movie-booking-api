@@ -1,9 +1,15 @@
 const Review = require('../models/review');
+const User = require('../models/user');
 
 class ReviewRepository {
 
   async findByMovieId(movie_id) {
-    return await Review.findAll({where:{ movie_id }, order:[['create_at','DESC']]});
+    return await Review.findAll({
+      where:{ movie_id }, order:[['create_at','DESC']],
+      include: {
+        model: User
+      }
+    });
   }
   
   async create(reviewData) {
