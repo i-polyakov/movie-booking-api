@@ -12,7 +12,7 @@ async function logMSSQLOperation(operation, tableName, includeTables, rowId, que
 
     try {
         // await sqlLog.save();
-        console.log('SQL лог сохранен:', mssqlLog);
+        console.log('SQL лог сохранен:', sqlLog);
     } catch (err) {
         console.error('Ошибка при сохранении SQL лога:', err);
     }
