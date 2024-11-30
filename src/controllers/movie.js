@@ -19,8 +19,8 @@ class MovieController {
     }
     async create(req, res, next){
         try {
-            const { title, released, runtime, image_url, plot, relevant } = req.body;
-            const createdMovie = await movieService.create({ title, released, runtime, image_url, plot, relevant });
+            const { title, released, runtime, image_url, plot, relevant, genreIds } = req.body;
+            const createdMovie = await movieService.create({ title, released, runtime, image_url, plot, relevant }, genreIds);
             res.status(201).json(createdMovie);
         }catch(err){
             next(err);

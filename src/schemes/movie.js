@@ -8,7 +8,8 @@ const MovieScheme = {
       runtime: Joi.number().min(1).max(32767),
       image_url: Joi.string().uri({ scheme: ['http', 'https'] }).pattern(/\.(jpg|jpeg|png|gif|bmp|webp)$/i),  // Разрешает только http и https. Проверяет, что URL заканчивается на допустимое расширение изображения. 
       plot: Joi.string().trim(),
-      relevant: Joi.boolean().default(true)
+      relevant: Joi.boolean().default(true),
+      genreIds: Joi.array().items(Joi.number())
     }
   ),
   hide: Joi.object(
