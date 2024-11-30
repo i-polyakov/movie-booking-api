@@ -6,16 +6,20 @@ const httpLogSchema = new mongoose.Schema({
     status: { type: Number, required: true },
     responseTime: { type: Number, required: true },
     timestamp: { type: Date, default: Date.now },
+    ip: { type: String, required: true }
 });
 
 const dbOperationLogSchema = new mongoose.Schema({
-    operation: { type: String, required: true }, // e.g., 'create', 'update', 'delete'
-    table_name: { type: String, required: true }, // e.g., 'User', 'Post'
-    documentId: { type: mongoose.Schema.Types.ObjectId, required: true },
+    operation: { type: String, required: true }, 
+    tableName: { type: String}, 
+    includeTables: { type: Array(String)}, 
+    rowId: { type: Number}, // ID записи
+    query: { type: String, required: true }, // SQL-запрос
     timestamp: { type: Date, default: Date.now },
+
 });
 
-const HttpLog = mongoose.model('HttpLog', httpLogSchema);
-const DbOperationLog = mongoose.model('DbOperationLog', dbOperationLogSchema);
+const HttpLog = mongoose.model('httpLog', httpLogSchema);
+const DbOperationLog = mongoose.model('dbOperationLog', dbOperationLogSchema);
 
 module.exports = { HttpLog, DbOperationLog };

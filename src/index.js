@@ -6,6 +6,7 @@ const bodyParser = require('body-parser');
 require('dotenv').config();
 const DataBase = require("./database");
 const errorMiddleware = require('./middleware/errorMiddleware')
+const httpLogger = require("./middleware/httpLogger");
 
 // const mongoPort = require("./config").app.mongoPort;
 
@@ -22,6 +23,7 @@ const PORT = process.env.PORT || 3000;
 const app = express();
 
 app.use(bodyParser.json());
+app.use(httpLogger)
 
 const options = {
   definition: {

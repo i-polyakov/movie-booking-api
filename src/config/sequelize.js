@@ -1,5 +1,9 @@
+const logMSSQLOperation = require("../database/logOperation");
+
 module.exports = {
-  logging: false,
+  logging: (query, options) => {
+    logMSSQLOperation(options.type, options.model?.tableName, options.tableNames, options.where?.id, query)
+  },
   dialect: "mssql",
   host: "localhost",
   port: 1433,
