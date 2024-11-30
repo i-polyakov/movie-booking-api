@@ -17,8 +17,12 @@ class MovieService {
             return movie
         });
     }
-    async create(movie){
-        return Movie.create(movie);
+    async create(movie, genreIds){
+        const newMovie = await Movie.create(movie); // Создаем фильм
+        // Добавляем жанры к фильму
+        await newMovie.addGenres(genreIds); // genreIds - это массив ID жанров
+    
+        return newMovie
     }
     async update(id, relevant){
     
