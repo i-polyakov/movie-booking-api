@@ -17,7 +17,7 @@ const httpLogger = async (req, res, next) => {
         console.log('newLog', newLog);
         // Сохранить лог в MongoDB
         try {
-            // await newLog.save();
+            await newLog.save();
         } catch (err) {
             console.error('Ошибка при сохранении лога:', err);
         }

@@ -2,13 +2,12 @@ const express = require("express");
 const swaggerUi = require('swagger-ui-express');
 const swaggerJSDoc = require("swagger-jsdoc");
 const bodyParser = require('body-parser');
+const mongoose = require('mongoose');
 
 require('dotenv').config();
 const DataBase = require("./database");
 const errorMiddleware = require('./middleware/errorMiddleware')
 const httpLogger = require("./middleware/httpLogger");
-
-// const mongoPort = require("./config").app.mongoPort;
 
 const genresRouter = require('./routes/genres');
 const moviesRouter = require('./routes/movies');
@@ -60,8 +59,15 @@ app.use('/api/bookings', bookingsRouter);
 app.use('/api/users', authRouter);
 app.use(errorMiddleware)
 
+// URL для подключения к БД
+const url = 'mongodb://localhost:27017/logs';
+
 
 async function start(){
+  
+    await mongoose.connect(url, { useNewUrlParser: true, useUnifiedTopology: true });
+    console.log('Успешное подключение к MongoDB');
+    
     await DataBase.connect();
     app.listen(PORT, () => console.log(`Server started at port ${PORT}`));
 }
