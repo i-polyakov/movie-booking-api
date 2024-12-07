@@ -21,6 +21,12 @@ const authRouter = require('./routes/auth');
 const PORT = process.env.PORT || 3000;
 const app = express();
 
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "*"); // разрешить любому доступ к ресурсу
+  res.header("Access-Control-Allow-Headers",  "Origin, X-Requested-With, Content-Type, Accept, Authorization");  // разрешенные заголовки запросов
+  next();
+ });
+
 app.use(bodyParser.json());
 app.use(httpLogger)
 
