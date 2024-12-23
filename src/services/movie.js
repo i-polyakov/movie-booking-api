@@ -25,8 +25,8 @@ class MovieService {
         return newMovie
     }
     async update(id, relevant){
-    
-        return Movie.update( id, relevant);
+        await Movie.update( id, relevant);
+        return this.getOne(id);
     }
 }
 
